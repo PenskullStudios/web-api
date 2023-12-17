@@ -1,8 +1,16 @@
 {
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "rimraf dist",
+    "start": "nodemon src/index.ts",
+    "ts.check": "tsc --project tsconfig.json",
+  "add-build": "git add dist",
+  "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+],
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.2",
     "@prisma/client": "^5.7.0",
@@ -14,7 +22,9 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.4",
+    "pre-commit": "^1.2.2",
     "prisma": "^5.7.0",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
